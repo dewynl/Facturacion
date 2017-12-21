@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from facturacion.views import FacturaFormView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', FacturaFormView.as_view(), name='crear-factura')
 ]
