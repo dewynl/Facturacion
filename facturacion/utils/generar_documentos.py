@@ -1,10 +1,14 @@
 import io
 
+from django.http import HttpResponse
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 
+from facturacion.models import Factura
 
-def crear_recibo(factura):
+
+def crear_recibo(request, pk):
+    factura = Factura.objects.filter(pk=pk).first()
     buffer = io.BytesIO()
     # TAMANO_HOJA = (9.0 * inch, 5.5 * inch)
     TAMANO_HOJA = (9.5 * inch, 11 * inch)
@@ -16,7 +20,7 @@ def crear_recibo(factura):
     can.setFont('Helvetica-Bold', 12)
     can.drawString(0.5 * inch, altura - 0.5 * inch, 'INVERSIONES LIRIANO')
     can.setFont('Helvetica', 14)
-    can.drawString(8.0 * inch, altura - 0.5 * inch, factura.fecha)
+    can.drawString(8.0 * inch, altura - 0.5 * inch, str(factura.fecha))
     can.setFont('Helvetica', 8)
     can.drawString(0.5 * inch, altura - 0.6 * inch, 'C/ GENEROSO DIAS #7 MOD 2 DETRÁS DE BAUTISTA MOTOR.')
     can.drawString(0.5 * inch, altura - 0.7 * inch, 'SANTIAGO, REP. DOM.')
@@ -54,4 +58,8 @@ def crear_recibo(factura):
     can.showPage()
     can.save()
 
-    return buffer.getvalue()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="factura.pdf"'
+    pdf = buffer.getvalue()
+    response.write(pdf)
+    return response

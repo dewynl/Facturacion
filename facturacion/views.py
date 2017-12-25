@@ -2,13 +2,12 @@ import time
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.shortcuts import redirect
 
-from django.views.generic import FormView, RedirectView, ListView
+from django.views.generic import FormView, RedirectView, ListView, DetailView
 
 from facturacion.forms.forms import FacturaForm, LoginForm
 from facturacion.models import Factura
-from facturacion.utils.generar_documentos import crear_recibo
 from facturacion.utils.number_to_letter import to_word
 
 
@@ -49,16 +48,17 @@ class FacturaFormView(LoginRequiredMixin, FormView):
         factura.monto_palabras = to_word(factura.monto)
         factura.monto_palabras = factura.monto_palabras + " Pesos Dominicanos."
         factura.fecha = time.strftime("%d/%m/%Y")
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="factura.pdf"'
-        pdf = crear_recibo(factura)
-        response.write(pdf)
         factura.save()
-        return response
+        return redirect('detalle-factura', pk=factura.pk)
 
 
 class FacturaListView(ListView):
     model = Factura
     template_name = 'facturas_list.html'
-    queryset = Factura.objects.all().order_by('id')
+    queryset = Factura.objects.all().order_by('-id')
+    paginate_by = 15
 
+
+class FacturaDetailView(DetailView):
+    model = Factura
+    template_name = 'factura-view.html'

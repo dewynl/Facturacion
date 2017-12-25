@@ -16,13 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from facturacion.views import FacturaFormView, LoginFormView, LogoutView, RootRedirectView, FacturaListView
+from facturacion.utils.generar_documentos import crear_recibo
+from facturacion.views import FacturaFormView, LoginFormView, LogoutView, RootRedirectView, FacturaListView, \
+    FacturaDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RootRedirectView.as_view(), name='root'),
     path('nueva-factura', FacturaFormView.as_view(), name='crear-factura'),
     path('factura/list', FacturaListView.as_view(), name='lista-factura'),
+    path('factura/ver-factura/<int:pk>/', FacturaDetailView.as_view(), name='detalle-factura'),
+    path('factura/generar-pdf/<int:pk>/', crear_recibo, name='crear-pdf-factura'),
     path('login/', LoginFormView.as_view(), name='iniciar-sesion'),
     path('logout/', LogoutView.as_view(), name='cerrar-sesion'),
 ]
