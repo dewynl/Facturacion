@@ -27,7 +27,7 @@ def crear_recibo(request, pk):
     can.drawString(0.5 * inch, altura - 0.8 * inch, 'Teléfonos: 809-276-3555 / 829-902-1118')
     can.setFont('Helvetica-Bold', 14)
     can.drawString(3.75 * inch, altura - 1.1 * inch, 'RECIBO DE INGRESOS')
-    can.line(0.5 * inch, altura - 1.2 * inch, 9.5 * inch, altura - 1.2 * inch)
+    can.line(0.5 * inch, altura - 1.2 * inch, 8.5 * inch, altura - 1.2 * inch)
     can.setFont('Helvetica', 12)
     can.drawString(0.5 * inch, altura - 1.5 * inch, 'HEMOS RECIBIDO DE:')
     can.line(2.4 * inch, altura - 1.6 * inch, 8.5 * inch, altura - 1.6 * inch)
