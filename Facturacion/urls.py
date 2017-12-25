@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from facturacion.views import FacturaFormView
+from facturacion.views import FacturaFormView, LoginFormView, LogoutView, RootRedirectView, FacturaListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', FacturaFormView.as_view(), name='crear-factura')
+    path('', RootRedirectView.as_view(), name='root'),
+    path('nueva-factura', FacturaFormView.as_view(), name='crear-factura'),
+    path('factura/list', FacturaListView.as_view(), name='lista-factura'),
+    path('login/', LoginFormView.as_view(), name='iniciar-sesion'),
+    path('logout/', LogoutView.as_view(), name='cerrar-sesion'),
 ]
