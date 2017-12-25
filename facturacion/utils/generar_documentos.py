@@ -54,7 +54,7 @@ def crear_recibo(request, pk):
         can.drawString(0.7 * inch, altura - 2.95 * inch, factura.concepto[70:])
     can.setFont('Helvetica', 12)
     can.line(6.5 * inch, altura - 3.4 * inch, 8.5 * inch, altura - 3.4 * inch)
-    can.drawString(7.0 * inch, altura - 3.4 * inch, "Firma y Sello")
+    can.drawString(7.0 * inch, altura - 3.6 * inch, "Firma y Sello")
     can.showPage()
     can.save()
 
