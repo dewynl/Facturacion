@@ -117,7 +117,7 @@ CATKIN_IGNORE
 .idea/vcs.xml
 .idea/workspace.xml
 Facturacion/__pycache__/
-templates/
+#templates/
 venv/bin/__pycache__/
 venv/lib/python3.6/__pycache__/
 venv/lib/python3.6/distutils/__pycache__/

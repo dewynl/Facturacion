@@ -1,0 +1,31 @@
+{% extends 'adminlte/base.html' %}
+{% load i18n %}
+
+{% block title %} Crear Nueva Factura {% endblock %}
+
+{% block nav_header %}
+    {% include 'header.html' %}
+
+{% endblock %}
+
+{% block content_header %}
+    <section class="content-header">
+        <h1>
+            {% block page_name %}Crear Nueva Factura{% endblock %}
+            {% block no_description %}{% endblock %}
+        </h1>
+    </section>
+{% endblock %}
+
+
+{% block nav_sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <form class="form-group" method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Crear Factura">
+    </form>
+{% endblock %}

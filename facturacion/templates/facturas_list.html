@@ -1,0 +1,68 @@
+{% extends 'adminlte/base.html' %}
+{% load i18n %}
+
+{% block title %} Crear Factura {% endblock %}
+
+{% block nav_header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block nav_sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content_header %}
+    <section class="content-header">
+        <h1>
+            {% block page_name %}Lista de Facturas{% endblock %}
+            {% block no_description %}{% endblock %}
+        </h1>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="box-header table-responsive no-padding">
+        <table class="table table-hover table-bordered" style="background: white">
+            <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Monto</th>
+                <th class="text-center">Ver Detalle</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for f in object_list %}
+                <tr>
+                    <td class="text-center">{{ f.id }}</td>
+                    <td class="text-center">{{ f.fecha }}</td>
+                    <td class="text-center">{{ f.nombre }}</td>
+                    <td class="text-center">RD$ {{ f.monto }}</td>
+                    <td class="text-center">
+                        <a class="borrar-factura btn btn-primary" href="/factura/ver-factura/{{ f.pk }}">
+                            <i class="fa fa-check-circle-o"></i> Ver Detalle</a>
+                        {% comment %}<a class="btn btn-danger" href="/factura/eliminar/{{ f.pk }}">
+                            <i class="fa fa-trash-o"></i> Eliminar</a>{% endcomment %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if is_paginated %}
+            <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/factura/list?page={{ page_obj.previous_page_number }}">Anterior </a>
+                {% endif %}
+                <span class="page-current">
+                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/factura/list?page={{ page_obj.next_page_number }}"> Siguiente</a>
+                {% endif %}
+            </span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

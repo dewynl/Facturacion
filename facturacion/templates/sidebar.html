@@ -1,0 +1,15 @@
+{% extends 'adminlte/lib/_main_sidebar.html' %}
+{% load i18n %}
+
+{% block nav_links %}
+    <li>
+        <a href="/">
+            <i class="fa fa-file-text-o"></i> <span>Nueva Factura</span>
+        </a>
+    </li>
+     <li>
+        <a href="/factura/list">
+            <i class="fa fa-list"></i> <span>Lista de Facturas</span>
+        </a>
+    </li>
+{% endblock nav_links %}
