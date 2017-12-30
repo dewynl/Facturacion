@@ -56,7 +56,7 @@ class FacturaListView(ListView):
     model = Factura
     template_name = 'facturas_list.html'
     queryset = Factura.objects.all().order_by('-id')
-    paginate_by = 15
+    paginate_by = 20
 
 
 class FacturaDetailView(DetailView):
