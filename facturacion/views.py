@@ -48,7 +48,6 @@ class FacturaFormView(LoginRequiredMixin, FormView):
         factura.monto_palabras = to_word(factura.monto)
         factura.monto_palabras = factura.monto_palabras + " Pesos Dominicanos."
         factura.fecha = time.strftime("%d/%m/%Y")
-        print(factura.fecha)
         factura.save()
         return redirect('detalle-factura', pk=factura.pk)
 
