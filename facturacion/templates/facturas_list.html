@@ -36,7 +36,7 @@
             {% for f in object_list %}
                 <tr>
                     <td class="text-center">{{ f.id }}</td>
-                    <td class="text-center">{{ f.fecha }}</td>
+                    <td class="text-center">{{ f.fecha.isoformat }}</td>
                     <td class="text-center">{{ f.nombre }}</td>
                     <td class="text-center">RD$ {{ f.monto }}</td>
                     <td class="text-center">
