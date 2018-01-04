@@ -33,7 +33,7 @@
                     <label for="nombre" class="col-sm-2 control-label">Fecha</label>
 
                     <div class="col-sm-10">
-                        <input type="text" value="{{ object.fecha }}" class="form-control" id="fecha"
+                        <input type="text" value="{{ object.fecha.isoformat}}" class="form-control" id="fecha"
                                placeholder="fecha" disabled>
                     </div>
                 </div>

@@ -23,9 +23,11 @@
 {% endblock %}
 
 {% block content %}
+    {% language 'es' %}
     <form class="form-group" method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <input class="btn btn-primary" type="submit" value="Crear Factura">
     </form>
+    {% endlanguage %}
 {% endblock %}
