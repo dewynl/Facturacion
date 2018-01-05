@@ -1,5 +1,5 @@
 {% extends 'adminlte/base.html' %}
-{% load i18n %}
+{% load i18n humanize %}
 
 {% block title %} Crear Factura {% endblock %}
 
@@ -38,7 +38,7 @@
                     <td class="text-center">{{ f.id }}</td>
                     <td class="text-center">{{ f.fecha.isoformat }}</td>
                     <td class="text-center">{{ f.nombre }}</td>
-                    <td class="text-center">RD$ {{ f.monto }}</td>
+                    <td class="text-center">RD${{ f.monto| intcomma }}</td>
                     <td class="text-center">
                         <a class="borrar-factura btn btn-primary" href="/factura/ver-factura/{{ f.pk }}">
                             <i class="fa fa-check-circle-o"></i> Ver Detalle</a>
@@ -65,4 +65,8 @@
             </div>
         {% endif %}
     </div>
+{% endblock %}
+
+{% block nav_footer %}
+    {% include 'footer.html' %}
 {% endblock %}

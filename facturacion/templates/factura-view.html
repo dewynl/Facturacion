@@ -50,7 +50,7 @@
 
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="monto" placeholder="monto"
-                               value="RD$ {{ object.monto }}" disabled>
+                               value="RD${{ object.monto }}" disabled>
                     </div>
                 </div>
 
@@ -78,4 +78,8 @@
             <!-- /.box-footer -->
         </form>
     </div>
+{% endblock %}
+
+{% block nav_footer %}
+    {% include 'footer.html' %}
 {% endblock %}

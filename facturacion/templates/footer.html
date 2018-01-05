@@ -1,0 +1,13 @@
+{% extends 'adminlte/lib/_main_footer.html' %}
+
+{% block footer_right %}
+    <b>Version</b> {% block version %}0.3{% endblock %}
+{% endblock %}
+
+{% block footer_left %}
+    {% block legal %}
+        <strong>Copyright &copy; {% now "Y" %}{% if not site %}.{% endif %}
+                <a href="http://www.linkedin.com/in/dewynliriano">Dewyn Liriano</a>
+        </strong>. All rights reserved.
+    {% endblock %}
+{% endblock %}
